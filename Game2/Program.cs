@@ -6,136 +6,160 @@ namespace Game2
     {
         static void Main(string[] args)
         {
-
-
-            int rolls = 0; //katsete arv
+            
+            
             int consoleChoice;
             string userChoice;
             int consoleScore = 0; //arvuti skoor
             int userScore = 0; // kasutaja skoor
-            string firstName;
-            string lastName;
+            string fullName;
+            bool gameOver = false;
+           
 
-            Console.WriteLine("Enter your first name, please: ");
-            firstName = Console.ReadLine();
-            Console.WriteLine("Enter your last name, please: ");
-            lastName = Console.ReadLine();
-            Console.WriteLine($"Hello {firstName} {lastName}!");
+            Console.WriteLine("Enter your full name, please: ");
+            fullName = Console.ReadLine();
+            
+            Console.WriteLine($"Nice to meet you {fullName} !");
             Console.ReadLine();
 
 
-            Random rnd = new Random(); //objekt, mis genereerib juhusliku numbri
 
 
-            while (userScore < 3 && consoleScore < 3)  //mäng käib kuni 3 p kes esimesena saab
+
+            while (!gameOver)  //mäng käib kuni 3 p kes esimesena saab; kuni mäng lõpeb
             {
                 Console.WriteLine("Choose rock,paper or scissors: ");
                 userChoice = Console.ReadLine();
+                Random rnd = new Random(); //objekt, mis genereerib juhusliku numbri
                 consoleChoice = rnd.Next(1, 4); //genereerib 1-3 stsenaariumi
 
 
                 if (consoleChoice == 1) //rock
                 {
-                    if (userChoice == "rock")
+                    if (userChoice.ToLower() == "rock")
                     {
                         Console.WriteLine("The computer chose rock");
                         Console.WriteLine("It is a tie");
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
+
 
                     }
-                    else if (userChoice == "paper")
+                    else if (userChoice.ToLower() == "paper")
                     {
                         Console.WriteLine("The computer chose rock");
                         Console.WriteLine("You won,paper beats rock ");
                         userScore++;
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
                     }
-                    else if (userChoice == "scissors")
+                    else if (userChoice.ToLower() == "scissors")
                     {
                         Console.WriteLine("The computer chose rock");
                         Console.WriteLine("Sorry you lost,rock beats scissors");
                         consoleScore++;
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
                     }
                     else
                     {
                         Console.WriteLine("You must choose rock,paper or scissors!");
+                        
                     }
-                    
+
                 }
                 else if (consoleChoice == 2) // paper
                 {
-                    if (userChoice == "rock")
+                    if (userChoice.ToLower() == "rock")
                     {
                         Console.WriteLine("The computer chose paper");
                         Console.WriteLine("Sorry you lost,paper beats rock");
                         consoleScore++;
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
 
                     }
-                    else if (userChoice == "paper")
+                    else if (userChoice.ToLower() == "paper")
                     {
                         Console.WriteLine("The computer chose paper");
                         Console.WriteLine("It is a tie");
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
 
                     }
-                    else if (userChoice == "scissors")
+                    else if (userChoice.ToLower() == "scissors")
                     {
                         Console.WriteLine("The computer chose paper");
                         Console.WriteLine("You won,scissors beats paper");
                         userScore++;
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
                     }
                     else
                     {
                         Console.WriteLine("You must choose rock,paper or scissors!");
-
+                        
                     }
-                    
+
 
                 }
                 else // arvuti valib käärid
                 {
-                    if (userChoice == "rock")
+                    if (userChoice.ToLower() == "rock")
                     {
                         Console.WriteLine("The computer chose scissors");
                         Console.WriteLine("You won,rock beats scissors ");
                         userScore++;
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
                     }
-                    else if (userChoice == "paper")
+                    else if (userChoice.ToLower() == "paper")
                     {
                         Console.WriteLine("The computer chose scissors");
                         Console.WriteLine("Sorry you lost,scissors beats paper");
                         consoleScore++;
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
 
                     }
-                    else if (userChoice == "scissors")
+                    else if (userChoice.ToLower() == "scissors")
                     {
                         Console.WriteLine("The computer chose scissors");
                         Console.WriteLine("It is a tie ");
+                        Console.WriteLine($"{fullName} score is {userScore} and Computer score is {consoleScore}");
+
                     }
                     else
                     {
                         Console.WriteLine("You must choose rock,paper or scissors!");
-
+                        
                     }
+
+                    
+                }
+
+
+
+
+              
+
+                if (userScore == 3) // kui kasutaja sai 3 punkti
+                {
+                    Console.WriteLine($"Congratulations! You won! You scored {userScore}, Computer scored {consoleScore}");
+                    gameOver = true;
+
+                }
+                else if (consoleScore == 3) // kui arvuti sai 3 punkti
+                {
+                    Console.WriteLine($"Oops, you lost. Try again! You scored {userScore}, Computer scored {consoleScore}");
+                    gameOver = true;
+                }
+                else
+                {
+                  
                     continue;
                 }
-                rolls++;
-            }
+               
 
-            Console.ReadLine();
+            }
+            
 
-            if (userScore > consoleScore) // kui kasutaja sai rohkem punkte
-            {
-                Console.WriteLine("Congratulations! You won!");
-            }
-            else if (userScore < consoleScore) // kui kasutaja sai vähem punkte
-            {
-                Console.WriteLine("Oops, you lost. Try again!");
-            }
-            else
-            {
-                Console.WriteLine("Tie. Nobody wins or loses"); //viik, kuigi pole võimalik
-            }
-            Console.WriteLine($"You scored {userScore}, Computer scored {consoleScore}");
-            Console.ReadLine();
-
+                Console.ReadLine();
+            
         }
     }
 }
+
+
